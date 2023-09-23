@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
-import saveJobApplication from '../../Statistics/saveLocalStorage/saveLocalStorage'
+
 
 const JobDetails = () => {
    const jobs = useLoaderData()
-   console.log(jobs)
-   const id = useParams()
-   console.log(id)
+  //  console.log(jobs)
+   const idx = useParams()
+  //  console.log(idx)
 
-   const parsInId = parseInt(id.id);
+   const parsInId = parseInt(idx.id);
    const singleJob = jobs.find((job) => parsInId === job.id);
-//    //  console.log(singleJob)
-   saveJobApplication(parsInId);
+    // console.log(singleJob)
+   
 
  const {
+   id,
    job_description,
    job_responsibility,
    educational_requirements,
@@ -75,7 +76,7 @@ const JobDetails = () => {
                   {contact_information.address}
                 </h2>
               </div>
-              <Link className="btn bg-gradient-to-r from-sky-500 to-indigo-500 text-white w-full">
+              <Link to={`/applyJob/${id}`} className="btn bg-gradient-to-r from-sky-500 to-indigo-500 text-white w-full">
                 Apply Now
               </Link>
             </div>
